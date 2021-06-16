@@ -15,12 +15,12 @@ export const getWeather = (
   return async dispatch => {
     try {
       const response = await fetch(
-        `api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.REACT_APP_API_KEY}`
+        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.REACT_APP_API_KEY}`
       );
 
       if (!response.ok) {
-        const responseData: WeatherError = await response.json();
-        throw new Error(responseData.message);
+        const responseErrorData: WeatherError = await response.json();
+        throw new Error(responseErrorData.message);
       }
 
       const responseData: WeatherData = await response.json();
